@@ -8,3 +8,28 @@ at Python Frederick.
 Our goal was to show off pytest
 and how to do automated testing
 in your projects.
+
+## Getting started
+
+Create a virtual environment to hold your local packages
+(i.e. `pytest`).
+
+```bash
+$ python3 -m venv venv
+$ source venv/bin/activate
+```
+
+Install `pytest` from PyPI.
+
+```bash
+(venv) $ pip install pytest
+```
+
+## Run the tests
+
+You can run the tests for this project
+by running `pytest`.
+
+```bash
+$ pytest
+```
