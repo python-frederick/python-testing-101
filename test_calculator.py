@@ -1,4 +1,6 @@
-from calculator import Calculator
+import pytest
+
+from calculator import Calculator, CalculatorError
 
 
 def test_add():
@@ -7,6 +9,13 @@ def test_add():
     result = calculator.add(2, 3)
 
     assert result == 5
+
+
+def test_add_weird_stuff():
+    calculator = Calculator()
+
+    with pytest.raises(CalculatorError):
+        result = calculator.add("two", 3)
 
 
 def test_subtract():

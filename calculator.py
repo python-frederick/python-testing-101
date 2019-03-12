@@ -1,9 +1,16 @@
+class CalculatorError(Exception):
+    """For calculator errors"""
+
+
 class Calculator:
     """A terrible calculator."""
 
     def add(self, a, b):
         """Add two numbers."""
-        return a + b
+        try:
+            return a + b
+        except TypeError:
+            raise CalculatorError("An addend was not a number")
 
     def subtract(self, a, b):
         """Subtract two numbers."""
