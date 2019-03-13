@@ -24,7 +24,10 @@ class Calculator:
 
     def divide(self, a, b):
         """Divide two numbers."""
-        return a / b
+        try:
+            return a / b
+        except ZeroDivisionError as ex:
+            raise CalculatorError("You can't divide by zero.") from ex
 
     def _check_operand(self, operand):
         """Check that the operand is a number."""
@@ -44,12 +47,18 @@ if __name__ == "__main__":
     }
     while True:
         print("Pick a calculation:")
+
         for choice, operation in sorted(operations.items()):
             print(f"{choice}: {operation.__name__}")
         operation = input("What operation? ")
         if operation not in operations:
             print("Sorry, that's not a valid choice.")
             continue
+
         a = float(input("Select first operand: "))
         b = float(input("Select second operand: "))
-        print("The result is: {}\n".format(operations[operation](a, b)))
+
+        try:
+            print("The result is: {}\n".format(operations[operation](a, b)))
+        except CalculatorError as error:
+            print(error)

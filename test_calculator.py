@@ -47,3 +47,10 @@ def test_divide():
     result = calculator.divide(9, 3)
 
     assert result == 3
+
+
+def test_divide_by_zero():
+    calculator = Calculator()
+
+    with pytest.raises(CalculatorError):
+        result = calculator.divide(9, 0)
