@@ -1,3 +1,6 @@
+import numbers
+
+
 class CalculatorError(Exception):
     """For calculator errors"""
 
@@ -7,10 +10,9 @@ class Calculator:
 
     def add(self, a, b):
         """Add two numbers."""
-        try:
-            return a + b
-        except TypeError:
-            raise CalculatorError("An addend was not a number")
+        self._check_operand(a)
+        self._check_operand(b)
+        return a + b
 
     def subtract(self, a, b):
         """Subtract two numbers."""
@@ -23,3 +25,8 @@ class Calculator:
     def divide(self, a, b):
         """Divide two numbers."""
         return a / b
+
+    def _check_operand(self, operand):
+        """Check that the operand is a number."""
+        if not isinstance(operand, numbers.Number):
+            raise CalculatorError(f'"{operand}" is not a number.')
