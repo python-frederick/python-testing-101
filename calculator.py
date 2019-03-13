@@ -30,3 +30,26 @@ class Calculator:
         """Check that the operand is a number."""
         if not isinstance(operand, numbers.Number):
             raise CalculatorError(f'"{operand}" is not a number.')
+
+
+if __name__ == "__main__":
+    print("Let's calculate!")
+    print("Press Ctrl+C to quit.")
+    calculator = Calculator()
+    operations = {
+        "1": calculator.add,
+        "2": calculator.subtract,
+        "3": calculator.multiply,
+        "4": calculator.divide,
+    }
+    while True:
+        print("Pick a calculation:")
+        for choice, operation in sorted(operations.items()):
+            print(f"{choice}: {operation.__name__}")
+        operation = input("What operation? ")
+        if operation not in operations:
+            print("Sorry, that's not a valid choice.")
+            continue
+        a = float(input("Select first operand: "))
+        b = float(input("Select second operand: "))
+        print("The result is: {}\n".format(operations[operation](a, b)))
